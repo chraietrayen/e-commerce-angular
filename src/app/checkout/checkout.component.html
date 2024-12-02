@@ -1,0 +1,45 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+  <form [formGroup]="checkoutForm" (ngSubmit)="submitOrder()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" placeholder="Your Full Name"/>
+      <div *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched">
+        Name is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" placeholder="Your Email Address"/>
+      <div *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+        Valid email is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input id="phone" formControlName="phone" type="tel" placeholder="Your Phone Number"/>
+      <div *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+        Valid phone number is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" placeholder="Your Shipping Address"/>
+      <div *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('addresse')?.touched">
+        Address is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="payment">Payment Method:</label>
+      <select id="payment" formControlName="payment">
+        <option value="credit-card">Credit Card</option>
+        <option value="cash">Cash</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank-transfer">Bank Transfer</option>
+        <option value="Crypto">Crypto</option>
+        <option value="Poste">Poste</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">Submit Order</button>
+  </form>
+</div>

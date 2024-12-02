@@ -1,0 +1,28 @@
+<div class="product-detail">
+  <h2>{{ product?.name || 'Product Name' }}</h2>
+  <div class="image-container">
+    <button class="nav-button left" (click)="prevImage()">&#10094;</button>
+    <img [src]="mainImage || 'path-to-placeholder-image'" alt="{{ product?.name || 'Product Image' }}" class="main-product-image" *ngIf="mainImage" />
+    <button class="nav-button right" (click)="nextImage()">&#10095;</button>
+  </div>
+  <p><em><strong>{{ product?.description || 'Product Description' }}</strong></em></p>
+  <div class="rating">
+    <i *ngFor="let star of [1, 2, 3, 4, 5]"
+       class="fa-star"
+       [ngClass]="{
+         'fas': star <= (userRating || product?.rating || 0),
+         'far': star > (userRating || product?.rating || 0)
+       }"
+       (click)="setRating(star)">
+    </i>
+  </div>
+  <b><p>Price: ${{ product?.price || '0' }}</p></b>
+  <button (click)="addToCart()" class="btn btn-primary">Add to Cart</button>
+</div>
+
+<div class="additional-images">
+  <h3>More Images</h3>
+  <div class="image-gallery">
+    <img *ngFor="let image of productImages" [src]="image || 'path-to-placeholder-image'" alt="Additional image" class="additional-image" (click)="setMainImage(image)" />
+  </div>
+</div>
